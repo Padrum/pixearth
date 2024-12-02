@@ -1,0 +1,11 @@
+name: PixEarth-Idle
+main: com.pixearth.idle.PixEarthIdle
+version: 1.0
+description: Plugin Idle du serveur PixEarth
+authors: [Padrum69, TheVisual_Play]
+website: https://pixearth.net/
+database: true
+depend: [PixEarth-Core, WorldGuard]
+commands:
+  idle:
+    description: Permet de gérer le jeu idle

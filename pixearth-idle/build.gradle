@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+}
+
+group 'com.pixearth'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+configurations {
+    myConfig
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'spigotmc-repo'
+        url = 'https://hub.spigotmc.org/nexus/content/groups/public/'
+    }
+    maven {
+        name = 'sonatype'
+        url = 'https://oss.sonatype.org/content/groups/public/'
+    }
+    maven { url "https://maven.enginehub.org/repo/" }
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compile 'org.spigotmc:spigot-api:1.13.2-R0.1-SNAPSHOT' // 1.13.2-R0.1-SNAPSHOT
+    compileOnly 'com.sk89q.worldguard:worldguard-bukkit:7.0.0'
+    compile name: 'pixearth-core-1.0'
+}
+
+jar {
+    from configurations.myConfig.collect { zipTree it }
+    manifest.attributes "Main-Class": "com.pixearth.idle.PixEarthIdle"
+}

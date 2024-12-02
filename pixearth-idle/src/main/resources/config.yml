@@ -1,0 +1,5 @@
+
+idle:
+  # Liste des mondes qui supportent l'idle
+  # ex : world_1, world_2, world_3
+  world: idle_1

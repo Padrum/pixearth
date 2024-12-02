@@ -1,0 +1,62 @@
+plugins {
+    id 'java'
+}
+
+group 'com.pixearth'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+configurations {
+    myConfig
+}
+
+// Charge la configuration local
+def localProps = new Properties()
+file("local.properties").withInputStream { localProps.load(it) }
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'spigotmc-repo'
+        url = 'https://hub.spigotmc.org/nexus/content/groups/public/'
+    }
+
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'org.spigotmc:spigot-api:1.13.2-R0.1-SNAPSHOT'
+    compile 'com.github.reinaldoarrosi:query-builder:0.1.1'
+    myConfig 'com.github.reinaldoarrosi:query-builder:0.1.1'
+    myConfig 'org.hibernate:hibernate-core:5.4.4.Final'
+    compile 'org.hibernate:hibernate-core:5.4.4.Final'
+    implementation 'com.google.code.gson:gson:2.8.2'
+    myConfig 'com.google.code.gson:gson:2.8.2'
+
+
+    compile 'com.github.dimitriBouteille:command-handler:v0.1-alpha'
+    myConfig 'com.github.dimitriBouteille:command-handler:v0.1-alpha'
+
+}
+
+jar {
+    from configurations.myConfig.collect { zipTree it }
+    manifest.attributes "Main-Class": "com.pixearth.core.PixEarthCore"
+}
+
+// Permet de copier le .jar dans un autre dossier
+if(localProps.getProperty("copyPath")) {
+
+    // Copie le .jar dans le dossier renseigne dans le local.properties
+    task copyJar {
+        copy {
+            from jar
+            into localProps.getProperty("copyPath")
+        }
+    }
+
+    // Tache qui est lancée lorsque le build est terminé
+    build.finalizedBy copyJar
+}

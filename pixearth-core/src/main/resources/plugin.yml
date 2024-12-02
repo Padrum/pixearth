@@ -1,0 +1,8 @@
+name: PixEarth-Core
+load: STARTUP
+main: com.pixearth.core.PixEarthCore
+version: 1.0
+description: Plugin de base pour les plugins du serveur PixEarth
+authors: [Padrum69, TheVisual_Play]
+website: https://pixearth.net/
+database: true

@@ -1,0 +1,4 @@
+rootProject.name = 'pixearth-core'
+include 'pixeart-core'
+findProject(':pixeart-core')?.name = 'pixearth-core'
+

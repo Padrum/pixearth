@@ -1,0 +1,8 @@
+# Informations de connexion pour les bases de donneess
+database:
+  idle:
+    driver: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/pixearth-idle?useSSL=false
+    password:
+    user: root
+    debug: true # Si true, affiches les requetes sql dans la console
